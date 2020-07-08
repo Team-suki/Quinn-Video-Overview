@@ -1,21 +1,21 @@
 {
   "development" : {
     "username" : "root",
-    "password" : "baseball",
+    "password" : "1234",
     "database" : "kickstarter",
     "host" : "localhost",
     "dialect" : "mysql"
   },
   "test": {
     "username": "root",
-    "password": "baseball",
+    "password": "1234",
     "database": "kickstarter",
     "host": "localhost",
     "dialect": "mysql"
   },
   "production": {
     "username": "root",
-    "password": "baseball",
+    "password": "1234",
     "database": "kickstarter",
     "host": "localhost",
     "dialect": "mysql"

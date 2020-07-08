@@ -12,17 +12,6 @@ app.use(cors());
 
 app.use(bodyParser.json());
 
-// app.get('/:id', (req, res) => {
-//   res.sendFile(path.join(__dirname, '../dist', 'index.html'));
-// });
-// for proxy server
-
-app.get('/api/banner', (req, res) => {
-  db.Banner.findOne()
-  .then(result => {
-    res.send(result);
-  })
-});
 
 app.get('/api/banners', (req, res) => {
   db.Banner.findAll()
@@ -38,6 +27,28 @@ app.get('/api/banner/:bannerId', (req, res) => {
   })
 });
 
+app.post('/api/banner', (req, res) => {
+  db.Banner.create(req.body).then(result => {
+    res.send(result);
+  }).catch(err => console.log('Error - ', err))
+});
+
+app.patch('/api/banner/:bannerId', (req, res)=>{
+  db.Banner.update(req.body,{where: {id: req.params.bannerId}})
+  .then(results => {
+    res.send(results);
+  }).catch(err => console.log(err))
+});
+
+app.delete('/api/banner/:bannerId', (req, res)=>{
+  db.Banner.destroy({where: {id: req.params.bannerId}})
+  .then(result => {
+    res.send(`${result} Item Deleted`)
+  }).catch(err => console.log('Error - ', err))
+})
+
+
+//Video Endpoints
 app.get('/api/videos', (req, res) => {
   db.Video.findAll()
   .then(result => {
@@ -45,32 +56,32 @@ app.get('/api/videos', (req, res) => {
   })
 });
 
+app.post('/api/video', (req, res) => {
+  db.Video.create(req.body).then(result => {
+    res.send(result);
+  }).catch(err => console.log('Error - ', err))
+});
+
 app.get('/api/video/:videoId', (req, res) => {
-  console.log(req.params.videoId);
   db.Video.findOne({where: {id: req.params.videoId}})
   .then(result => {
     res.send(result);
   })
 });
+app.patch('/api/video/:videoId', (req, res)=>{
+    db.Video.update(req.body,{where: {id: req.params.videoId}})
+    .then(results => {
+      res.send(results);
+    }).catch(err => console.log(err))
+  });
 
-app.get('/api/video', (req, res) => {
-  db.Video.findOne()
+app.delete('/api/video/:videoId', (req, res) => {
+  db.Video.destroy({where: {id: req.params.videoId}})
   .then(result => {
-    res.send(result);
-  })
-});
+    res.send(`${result} Item Deleted`);
+  }).catch(err => console.log('Error - ', err))
+})
 
-app.post('/api/video', (req, res) => {
-  db.generateVids().then(result => {
-    console.log(result);
-  })
-});
-
-app.post('/api/banner', (req, res) => {
-  db.generateBanners().then(result => {
-    console.log(result);
-  })
-});
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../dist', 'index.html'));
