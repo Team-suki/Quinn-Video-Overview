@@ -1,8 +1,13 @@
 const db = require('./index.js');
 const faker = require('faker');
+const dbCredentials = require('./dbconfig.json')
+
+//Moved from index
+db.Video.sync();
+db.Banner.sync();
 
 const generateVideos = function() {
-  for (var i = 0; i < 5; i ++) {
+  for (var i = 0; i < 100; i ++) {
     db.Video.create ({
       title: faker.commerce.productName(),
       description: faker.lorem.sentence(),
@@ -12,7 +17,7 @@ const generateVideos = function() {
 }
 
 const generateBanners = function() {
-  for (var i = 0; i < 5; i ++) {
+  for (var i = 0; i < 100; i ++) {
     db.Banner.create ({
       title: faker.commerce.productName(),
       description: faker.lorem.sentence(),
@@ -28,6 +33,19 @@ const generateBanners = function() {
     });
   }
 }
+
+//Added
+db.sequelize
+  .authenticate()
+  .then(() => {
+    console.log('Connection has been established successfully.');
+  }).then(()=> {
+    generateVideos()
+    generateBanners()
+  })
+  .catch(err => {
+    console.error('Unable to connect to the database:', err);
+  });
 
 module.exports.generateVideos = generateVideos;
 module.exports.generateBanners = generateBanners;
