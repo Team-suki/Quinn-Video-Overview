@@ -1,6 +1,6 @@
 const {Sequelize, Model, Datatypes} = require('sequelize');
 const faker = require('faker');
-const dbCredentials = require('./config.json')
+const dbCredentials = require('./dbconfig.json')
 
 var sequelize = new Sequelize(dbCredentials.development.database, dbCredentials.development.username, dbCredentials.development.password, {
   host: dbCredentials.development.host,

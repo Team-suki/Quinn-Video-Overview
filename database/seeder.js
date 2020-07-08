@@ -1,6 +1,6 @@
 const db = require('./index.js');
 const faker = require('faker');
-const dbCredentials = require('./config.json')
+const dbCredentials = require('./dbconfig.json')
 
 //Moved from index
 db.Video.sync();
