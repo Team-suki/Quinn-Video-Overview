@@ -6,3 +6,5 @@ dbconfig.json
 .DS_Store
 seeddata.json
 data.json
+*.json
+assets
