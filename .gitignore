@@ -7,4 +7,5 @@ dbconfig.json
 seeddata.json
 data.json
 *.json
+*.csv
 assets
