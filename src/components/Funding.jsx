@@ -43,7 +43,7 @@ class Funding extends React.Component {
     return <div>
           <br></br>
           <div>
-            <div><Pledged>$ {this.state.amount_pledged}</Pledged></div>
+            <div><Pledged>${this.state.amount_pledged}</Pledged></div>
             <div><Sidetext>pledged of ${this.state.goal} goal</Sidetext></div>
             <br></br>
             <div><Number>{this.state.days}</Number></div>
