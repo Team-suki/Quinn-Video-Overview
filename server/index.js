@@ -13,7 +13,7 @@ app.use(cors());
 app.use(bodyParser.json());
 //get one banner
 app.get('/banners/:id', (req, res) => {
-  db.Banner.findAll({where: {campaign_id: req.params.id}})
+  db.Banner.findOne({where: {campaign_id: req.params.id}})
   .then(result => {
     res.send(result)
   }).catch(err => res.send(err))
