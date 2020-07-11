@@ -1,3 +1,56 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:518372b8aa68eb8a0db28e523a80689651363b51c3bce817068b39d602d32d64
-size 1469
+{
+  "name": "va-service",
+  "version": "1.0.0",
+  "description": "Kickstarter app",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "start": "nodemon server/index.js",
+    "seed": "node database/seeder.js",
+    "build": "webpack -d --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/team-iroh/VA-Service.git"
+  },
+  "author": "Vasan Arul",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/team-iroh/VA-Service/issues"
+  },
+  "homepage": "https://github.com/team-iroh/VA-Service#readme",
+  "dependencies": {
+    "@babel/preset-env": "^7.10.3",
+    "@babel/preset-react": "^7.10.1",
+    "axios": "^0.19.2",
+    "babel": "^6.23.0",
+    "babel-cli": "^6.26.0",
+    "babel-loader": "^8.1.0",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "css": "^2.2.4",
+    "express": "^4.17.1",
+    "faker": "^4.1.0",
+    "loader": "^2.1.1",
+    "mini-css-extract-plugin": "^0.9.0",
+    "moment": "^2.27.0",
+    "mysql": "^2.18.1",
+    "mysql2": "^2.1.0",
+    "nodemon": "^2.0.4",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "sequelize": "^5.21.13",
+    "style-loader": "^1.2.1",
+    "styled-components": "^5.1.1",
+    "webpack": "^4.43.0"
+  },
+  "devDependencies": {
+    "babel-jest": "^26.1.0",
+    "babel-plugin-styled-components": "^1.10.7",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.2",
+    "jest": "^26.0.1",
+    "sequelize-cli": "^5.5.1",
+    "webpack-cli": "^3.3.12"
+  }
+}

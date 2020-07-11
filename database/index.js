@@ -7,33 +7,23 @@ var sequelize = new Sequelize(dbCredentials.development.database, dbCredentials.
   dialect: dbCredentials.development.dialect
 });
 
-class Video extends Model {}
-
-Video.init({
-  title: Sequelize.STRING,
-  description: Sequelize.STRING,
-  video_url: Sequelize.STRING,
-  bannerID: Sequelize.STRING
-}, {sequelize, modelName: 'video'});
+//new Banner Model
 
 class Banner extends Model {}
 
 Banner.init ({
+  campaign_id: Sequelize.INTEGER,
   title: Sequelize.STRING,
-  description: Sequelize.STRING,
-  amount_pledged: Sequelize.STRING,
-  goal: Sequelize.STRING,
-  backers: Sequelize.INTEGER,
-  backers_text: Sequelize.STRING,
-  days: Sequelize.INTEGER,
-  days_text: Sequelize.STRING,
-  all_or_nothing: Sequelize.BOOLEAN,
+  description: Sequelize.TEXT,
+  category: Sequelize.STRING,
   location: Sequelize.STRING,
-  project_we_love: Sequelize.BOOLEAN
+  product_we_love: Sequelize.BOOLEAN,
+  video_url: Sequelize.STRING,
+  amount_pledged: Sequelize.FLOAT,
+  pledge_goal: Sequelize.FLOAT,
+  backers: Sequelize.INTEGER,
+  end_date: Sequelize.DATEONLY
 }, {sequelize, modelName: 'banner'});
 
-
-
 module.exports.sequelize = sequelize;
-module.exports.Video = Video;
 module.exports.Banner = Banner;
