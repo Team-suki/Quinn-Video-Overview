@@ -26,7 +26,11 @@ app.post('/banners', (req, res)=> {
   .catch(err => res.send('That is already taken. Try updating instead of creating a new record'))
 })
 //update one banner
-
+app.patch('/banners/:id',(req, res) => {
+  db.Banner.update(req.body,{where: {campaign_id: req.params.id}})
+  .then(result => res.send('Your banner was updated successfully'))
+  .catch(err => res.send("There was an error with your request. Try again"))
+})
 //delete one banner
 
 
