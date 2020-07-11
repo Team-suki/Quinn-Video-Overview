@@ -2,9 +2,9 @@ node_modules
 pexels
 config.json
 dbconfig.json
-*.sql
 .DS_Store
 seeddata.json
 data.json
 *.json
+*.csv
 assets
