@@ -11,6 +11,19 @@ app.use(express.static(path.join(__dirname, '../dist')));
 app.use(cors());
 
 app.use(bodyParser.json());
+//get one banner
+app.get('/banners/:id', (req, res) => {
+  db.Banner.findOne({where: {campaign_id: req.params.id}})
+  .then(result => {
+    res.send(result)
+  }).catch(err => res.send(err))
+});
+
+//add one banner
+
+//update one banner
+
+//delete one banner
 
 
 app.get('/api/banners', (req, res) => {
