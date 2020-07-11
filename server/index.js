@@ -32,8 +32,15 @@ app.patch('/banners/:id',(req, res) => {
   .catch(err => res.send("There was an error with your request. Try again"))
 })
 //delete one banner
+app.delete('/banners/:id', (req, res) => {
+  console.log('Deleting')
+  db.Banner.destroy({where: {campaign_id: req.params.id}}).then(result => res.send('Banner deleted')).catch(err => {
+    console.log('Error - ', err)
+    res.sendStatus(404)
+  })
+})
 
-
+//old
 app.get('/api/banners', (req, res) => {
   db.Banner.findAll()
   .then(result => {
