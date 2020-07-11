@@ -12,7 +12,7 @@ var sequelize = new Sequelize(dbCredentials.development.database, dbCredentials.
 class Banner extends Model {}
 
 Banner.init ({
-  campaign_id: Sequelize.INTEGER,
+  campaign_id: { type: Sequelize.INTEGER, unique: true},
   title: Sequelize.STRING,
   description: Sequelize.TEXT,
   category: Sequelize.STRING,

@@ -13,14 +13,18 @@ app.use(cors());
 app.use(bodyParser.json());
 //get one banner
 app.get('/banners/:id', (req, res) => {
-  db.Banner.findOne({where: {campaign_id: req.params.id}})
+  db.Banner.findAll({where: {campaign_id: req.params.id}})
   .then(result => {
     res.send(result)
   }).catch(err => res.send(err))
 });
 
 //add one banner
-
+app.post('/banners', (req, res)=> {
+  db.Banner.create(req.body)
+  .then(result => res.send(result))
+  .catch(err => res.send('That is already taken. Try updating instead of creating a new record'))
+})
 //update one banner
 
 //delete one banner
