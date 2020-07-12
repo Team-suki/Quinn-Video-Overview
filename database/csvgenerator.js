@@ -15,10 +15,10 @@ cassandra ? dateFormat = 'YYYY-MM-DD': dateFormat = 'MM/DD/YYYY'
 //name of file you want to generate
 var filename = 'HUGE.csv'
 //number of records to generate
-var records = 1000000;
+var records = 100000000;
 
 // start the progress bar with a total value of 200 and start value of 0
-bar1.start(records, 0);
+bar1.start(records, 1);
 var videos =[
   'https://www.youtube.com/embed/9o0qCm41tx4',
   'https://www.youtube.com/embed/yddkQmyjUVQ',
@@ -48,13 +48,10 @@ var start = Date.now();
 var startCount = 0;
 var endCount = records;
 var generateCSV = function () {
-  //console.log('\n')
-  console.log(' Generating!')
   let i = 0;
   var writeToCSV =  function() {
     let ok = true;
     do {
-      console.log('DOING')
       i++;
       let entry = '';
       entry+=`${i},`;
@@ -68,12 +65,12 @@ var generateCSV = function () {
       entry+=`${faker.finance.amount()},`;
       entry+=`${faker.random.number()},`;
       entry+=`${moment(faker.date.future()).format(dateFormat)}\n`;
-      if (i === 0) {
+      if (i === endCount) {
         writer.write(entry);
-        bar1.increment()
+        //bar1.increment();
       } else {
-        ok = writer.write(entry);
-        bar1.increment()
+        writer.write(entry);
+        bar1.increment();
       }
     } while (i < endCount && ok);
     if (i > 0) {
@@ -83,26 +80,6 @@ var generateCSV = function () {
   writeToCSV();
 }
 generateCSV();
-// for( var i = startCount; i < endCount; i++) {
-//   var write = function () {
-//     let entry = '';
-//     entry+=`${i},`;
-//     entry+= `${faker.company.catchPhrase()},`;
-//     entry+=`${faker.lorem.paragraph()},`;
-//     entry+=`${faker.commerce.department()},`;
-//     entry+=`"${faker.address.city()}, ${faker.address.state()}",`;
-//     entry+=`${faker.random.boolean()},`;
-//     entry+=`${videos[Math.floor(Math.random() * videos.length)]},`;
-//     entry+=`${faker.finance.amount()},`;
-//     entry+=`${faker.finance.amount()},`;
-//     entry+=`${faker.random.number()},`;
-//     entry+=`${moment(faker.date.future()).format(dateFormat)}\n`;
-
-//     writer.write(entry)
-//     bar1.increment()
-//   }
-// // writer.once('drain', write)
-// }
 writer.end()
 // stop the progress bar
 bar1.stop();
