@@ -7,7 +7,6 @@ const cliProgress = require('cli-progress');
 // create a new progress bar instance and use shades_classic theme
 const options = {format:'progress [{bar}] {percentage}% | ETA: {eta}s | {value}/{total} | Duration: {duration} seconds'}
 const bar1 = new cliProgress.SingleBar(options, cliProgress.Presets.shades_classic);
-
 var dateFormat = '';
 //Changes date formate if you're generating for Cassandra vs Postgres
 var cassandra = true;
@@ -15,43 +14,38 @@ cassandra ? dateFormat = 'YYYY-MM-DD': dateFormat = 'MM/DD/YYYY'
 //name of file you want to generate
 var filename = 'HUGE.csv'
 //number of records to generate
-var records = 100000000;
+var endCount = 70000000;
 
 // start the progress bar with a total value of 200 and start value of 0
-bar1.start(records, 1);
-var videos =[
-  'https://www.youtube.com/embed/9o0qCm41tx4',
-  'https://www.youtube.com/embed/yddkQmyjUVQ',
-  'https://www.youtube.com/embed/P4h2YDgACqE',
-  'https://www.youtube.com/embed/2uajAEByMYw',
-  'https://www.youtube.com/embed/OtREUajBwIQ',
-  'https://www.youtube.com/embed/U39L4mEyIRc',
-  'https://www.youtube.com/embed/ZJgkyGoIDk4',
-  'https://www.youtube.com/embed/GruSnziMV4U',
-  'https://www.youtube.com/embed/zgUY4-uH5sU',
-  'https://www.youtube.com/embed/tqAuu1WWIM8',
-  'https://www.youtube.com/embed/-9S42a1EkeY',
-  'https://www.youtube.com/embed/CAHHK90J1_g'
-]
-
+bar1.start(endCount, 1);
 //createWrite stream
-
 const writer = fs.createWriteStream(filename,{flags: 'w'})
 .on('finish', ()=> {
   console.log('Finished Writing')
 })
 .on('error', (err)=> {
-  console.log(err)
+  console.log('Error -', err)
 })
 writer.write('campaign_id,title,description,category,location,product_we_love,video_url,amount_pledged,pledge_goal,backers,end_date\n')
-var start = Date.now();
-var startCount = 0;
-var endCount = records;
 var generateCSV = function () {
   let i = 0;
-  var writeToCSV =  function() {
+  let writeToCSV =  function() {
     let ok = true;
     do {
+      let videos =[
+        'https://www.youtube.com/embed/9o0qCm41tx4',
+        'https://www.youtube.com/embed/yddkQmyjUVQ',
+        'https://www.youtube.com/embed/P4h2YDgACqE',
+        'https://www.youtube.com/embed/2uajAEByMYw',
+        'https://www.youtube.com/embed/OtREUajBwIQ',
+        'https://www.youtube.com/embed/U39L4mEyIRc',
+        'https://www.youtube.com/embed/ZJgkyGoIDk4',
+        'https://www.youtube.com/embed/GruSnziMV4U',
+        'https://www.youtube.com/embed/zgUY4-uH5sU',
+        'https://www.youtube.com/embed/tqAuu1WWIM8',
+        'https://www.youtube.com/embed/-9S42a1EkeY',
+        'https://www.youtube.com/embed/CAHHK90J1_g'
+      ]
       i++;
       let entry = '';
       entry+=`${i},`;
@@ -75,6 +69,7 @@ var generateCSV = function () {
     } while (i < endCount && ok);
     if (i > 0) {
       writer.once('drain', writeToCSV)
+      //writer.once('drain', ()=> console.log('draining'))
     }
   }
   writeToCSV();
@@ -83,10 +78,3 @@ generateCSV();
 writer.end()
 // stop the progress bar
 bar1.stop();
-// var end = Date.now();
-// var diff = end - start;
-// console.log('Start - ', start)
-// console.log('End - ', end)
-
-// console.log('Diff (ms) - ', diff)
-// console.log('Diff (sec) - ', diff/1000)
