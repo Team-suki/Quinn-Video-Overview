@@ -17,7 +17,7 @@ const generateMultipleCSVS = function(numberOfCSVS, records, filename, dateForma
     statusBars[barNumber] = new cliProgress.SingleBar(options, cliProgress.Presets.shades_classic);
     statusBars[barNumber].start(records, 1);
   }
-  console.log(statusBars)
+  console.log('Number of CSVS: ', numberOfCSVS)
   while(csv < numberOfCSVS) {
     csv++;
     //do everything that was being done before
