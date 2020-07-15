@@ -36,25 +36,10 @@ router.patch('/:id', async (req, res) => {
   var queryString = `UPDATE banners SET (${columnsString}) = (${valuesString}) WHERE campaign_id=${id}`;
   const {rows} = await db.query(queryString, params)
   res.send('Your record has been updated!')
-})
-// router.delete()
-//add one banner
-// app.post('/banners', (req, res)=> {
-//   db.Banner.create(req.body)
-//   .then(result => res.send(result))
-//   .catch(err => res.send('That is already taken. Try updating instead of creating a new record'))
-// })
-// //update one banner
-// app.patch('/banners/:id',(req, res) => {
-//   db.Banner.update(req.body,{where: {campaign_id: req.params.id}})
-//   .then(result => res.send('Your banner was updated successfully'))
-//   .catch(err => res.send("There was an error with your request. Try again"))
-// })
-// //delete one banner
-// app.delete('/banners/:id', (req, res) => {
-//   console.log('Deleting')
-//   db.Banner.destroy({where: {campaign_id: req.params.id}}).then(result => res.send('Banner deleted')).catch(err => {
-//     console.log('Error - ', err)
-//     res.sendStatus(404)
-//   })
-// })
+});
+
+router.delete('/:id', async (req, res) => {
+  const {id} = req.params;
+  const {rows} = await db.query('DELETE FROM banners WHERE campaign_id=$1',[id]);
+  res.send('Record deleted');
+});
