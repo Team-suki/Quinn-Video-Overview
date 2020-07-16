@@ -5,6 +5,7 @@ import Pledged from '../style/pledged.style.js';
 import Sidetext from '../style/sidebarText.style.js';
 import BackerButton from '../style/backerButton.style.js';
 import Remind from '../style/remindButton.style.js';
+const moment = require('moment')
 
 class Funding extends React.Component {
   constructor(props) {
@@ -21,16 +22,15 @@ class Funding extends React.Component {
 
     this.getBanner = this.getBanner.bind(this);
   }
-
+  //.endOf('day').fromNow()
   getBanner() {
-    axios.get(`http://localhost:3002/api/banner${window.location.pathname}`).then(result => {
+    axios.get(`http://localhost:3002/banners${window.location.pathname}`).then(result => {
+      console.log(result.data)
       this.setState({
-        goal: result.data.goal,
+        goal: result.data.pledge_goal,
         amount_pledged: result.data.amount_pledged,
-        days: result.data.days,
-        days_text: result.data.days_text,
+        days: moment(result.data.end_date).diff(moment(),'days'),
         backers: result.data.backers,
-        backers_text: result.data.backers_text
       });
     })
   }
@@ -43,14 +43,14 @@ class Funding extends React.Component {
     return <div>
           <br></br>
           <div>
-            <div><Pledged>{this.state.amount_pledged}</Pledged></div>
-            <div><Sidetext>{this.state.goal}</Sidetext></div>
+            <div><Pledged>${this.state.amount_pledged}</Pledged></div>
+            <div><Sidetext>pledged of ${this.state.goal} goal</Sidetext></div>
             <br></br>
             <div><Number>{this.state.days}</Number></div>
-            <div><Sidetext>{this.state.days_text}</Sidetext></div>
+            <div><Sidetext>days to go</Sidetext></div>
             <br></br>
             <div><Number>{this.state.backers}</Number></div>
-            <div><Sidetext>{this.state.backers_text}</Sidetext></div>
+            <div><Sidetext>backers</Sidetext></div>
           </div>
           <br></br>
           <div><BackerButton>Back this project</BackerButton></div>
