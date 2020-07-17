@@ -1,13 +1,13 @@
 config:
   target: 'http://localhost:3002'
   phases:
-    - duration: 300
+    - duration: 600
       arrivalRate: 1
-    - duration: 300
+    - duration: 600
       arrivalRate: 10
-    - duration: 300
+    - duration: 600
       arrivalRate: 100
-    - duration: 300
+    - duration: 600
       arrivalRate: 1000
   processor: "./randomBannerID.js"
 scenarios:
@@ -15,4 +15,3 @@ scenarios:
     - function: "randomID"
     - get:
         url: "/banners/{{id}}"
-    - log: "Request - http://localhost:3002/banners/{{id}}"
