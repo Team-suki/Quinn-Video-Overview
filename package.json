@@ -7,7 +7,9 @@
     "test": "jest",
     "start": "nodemon server/index.js",
     "seed": "node database/seeder.js",
-    "build": "webpack -d --watch"
+    "build": "webpack -d --watch",
+    "build:prod": "webpack -d"
+
   },
   "repository": {
     "type": "git",
@@ -30,6 +32,7 @@
     "cassandra-driver": "^4.5.2",
     "cors": "^2.8.5",
     "css": "^2.2.4",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-promise-router": "^4.0.1",
     "faker": "^4.1.0",
