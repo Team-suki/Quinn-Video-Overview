@@ -1,9 +1,10 @@
 require('newrelic');
+require('dotenv').config()
 const express = require('express');
 const app = express();
 const path = require('path');
 const cors = require('cors');
-const port = 3002;
+const port = process.env.PORT;
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(cors());
