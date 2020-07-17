@@ -8,3 +8,5 @@ data.json
 *.json
 *.csv
 assets
+*.txt
+*.log
