@@ -21,11 +21,10 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
--- Name: banner; Type: TABLE; Schema: public; Owner: postgres
+-- Name: banners; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.banner (
-    id bigint NOT NULL,
+CREATE TABLE public.banners (
     campaign_id bigint NOT NULL,
     title character varying(100) NOT NULL,
     description character varying NOT NULL,
@@ -40,28 +39,13 @@ CREATE TABLE public.banner (
 );
 
 
-ALTER TABLE public.banner OWNER TO postgres;
+ALTER TABLE public.banners OWNER TO postgres;
 
 --
--- Name: banner_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: banners_campaign_id_idx; Type: INDEX; Schema: public; Owner: postgres
 --
 
-ALTER TABLE public.banner ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
-    SEQUENCE NAME public.banner_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1
-);
-
-
---
--- Name: banner banner_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.banner
-    ADD CONSTRAINT banner_pkey PRIMARY KEY (id);
+CREATE INDEX banners_campaign_id_idx ON public.banners USING hash (campaign_id);
 
 
 --
