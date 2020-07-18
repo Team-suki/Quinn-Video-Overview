@@ -19,7 +19,8 @@ class Video extends React.Component {
   }
 
   getVideo() {
-    axios.get(`http://localhost:8080/banners${window.location.pathname}`).then(result => {
+    var id = new URLSearchParams(window.location.search).get('id');
+    axios.get(`http://localhost:8080/banners/${id}`).then(result => {
       this.setState({
         title: result.data.title,
         description: result.data.description,

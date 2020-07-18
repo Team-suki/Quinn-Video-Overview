@@ -14,7 +14,8 @@ class Social extends React.Component {
   }
 
   getBanner() {
-    axios.get(`http://localhost:8080/banners${window.location.pathname}`).then(result => {
+    var id = new URLSearchParams(window.location.search).get('id');
+    axios.get(`http://localhost:8080/banners/${id}`).then(result => {
       this.setState({
         location: result.data.location,
         category: result.data.category
