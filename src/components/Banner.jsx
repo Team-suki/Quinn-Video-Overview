@@ -4,39 +4,11 @@ import Title from '../style/title.style.js';
 import Description from '../style/description.style.js';
 import BackerButton from '../style/backerButton.style.js';
 
-class Banner extends React.Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      title : '',
-      description: '',
-    }
-
-    this.getBanner = this.getBanner.bind(this);
-  }
-
-  getBanner() {
-    var id = new URLSearchParams(window.location.search).get('id');
-    axios.get(`/banners/${id}`).then(result => {
-      this.setState({
-        title: result.data.title,
-        description: result.data.description,
-        location: result.data.location,
-      });
-    })
-  }
-
-  componentDidMount() {
-    this.getBanner()
-  }
-
-  render() {
-    return <div>
-      <div><Title>{this.state.title}</Title></div>
-      <div><Description>{this.state.description}</Description></div>
-      </div>
-  }
-}
+const Banner = (props) => (
+  <div>
+    <div><Title>{props.title}</Title></div>
+    <div><Description>{props.description}</Description></div>
+  </div>
+)
 
 export default Banner;
