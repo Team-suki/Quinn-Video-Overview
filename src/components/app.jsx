@@ -55,7 +55,7 @@ class App extends React.Component {
         <Video video_url={this.state.video_url}/><Funding amount_pledged={this.state.amount_pledged} goal={this.state.goal} days={this.state.days} backers={this.state.backers}/>
       </MidWrapper>
       </div>
-      <div><Social /></div>
+      <div><Social category={this.state.category} location={this.state.location}/></div>
     </Background>
       </div>
   }
