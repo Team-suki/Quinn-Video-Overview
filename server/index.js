@@ -1,11 +1,13 @@
 require('newrelic');
 require('dotenv').config()
+const compression = require('compression');
 const express = require('express');
 const app = express();
 const path = require('path');
 const cors = require('cors');
 const port = process.env.PORT;
 const bodyParser = require('body-parser');
+app.use(compression)
 app.use(bodyParser.json());
 app.use(cors());
 
