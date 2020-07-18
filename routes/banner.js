@@ -6,6 +6,7 @@ const router = new Router();
 module.exports = router;
 
 router.get('/:id', async (req, res) => {
+  console.log('Get: ', req.params)
   const {id} = req.params
   try {
     const {rows} = await db.query('SELECT * FROM banners WHERE campaign_id=$1', [id])
