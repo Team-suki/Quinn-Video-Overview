@@ -18,7 +18,7 @@ class Banner extends React.Component {
 
   getBanner() {
     var id = new URLSearchParams(window.location.search).get('id');
-    axios.get(`http://localhost:8080/banners/${id}`).then(result => {
+    axios.get(`/banners/${id}`).then(result => {
       this.setState({
         title: result.data.title,
         description: result.data.description,
