@@ -24,8 +24,7 @@ class Funding extends React.Component {
   }
   //.endOf('day').fromNow()
   getBanner() {
-    axios.get(`http://localhost:3002/banners${window.location.pathname}`).then(result => {
-      console.log(result.data)
+    axios.get(`http://localhost:8080/banners${window.location.pathname}`).then(result => {
       this.setState({
         goal: result.data.pledge_goal,
         amount_pledged: result.data.amount_pledged,
