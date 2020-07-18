@@ -52,7 +52,7 @@ class App extends React.Component {
     return <div style={{fontFamily: `"Maison Neue Book", "Helvetica Neue", Helvetica, Arial, sans-serif`}}><Background>
       <div><Banner title={this.state.title} description={this.state.description}/></div>
       <div><MidWrapper>
-        <Video /><Funding />
+        <Video /><Funding amount_pledged={this.state.amount_pledged} goal={this.state.goal} days={this.state.days} backers={this.state.backers}/>
       </MidWrapper>
       </div>
       <div><Social /></div>
