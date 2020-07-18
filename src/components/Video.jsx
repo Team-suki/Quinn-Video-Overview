@@ -5,47 +5,18 @@ import Funding from './Funding.jsx'
 import MidWrapper from '../style/midWrapper.style.js';
 import Videodiv from '../style/Videodiv.style.js';
 
-class Video extends React.Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      title : '',
-      description: '',
-      video_url: ''
-    }
-
-    this.getVideo = this.getVideo.bind(this);
-  }
-
-  getVideo() {
-    var id = new URLSearchParams(window.location.search).get('id');
-    axios.get(`/banners/${id}`).then(result => {
-      this.setState({
-        title: result.data.title,
-        description: result.data.description,
-        video_url: result.data.video_url,
-      });
-    })
-  }
-
-  componentDidMount() {
-    this.getVideo()
-  }
-
-  render() {
-    return <div>
-      <Videodiv>
-        <iframe src={this.state.video_url}
-        frameBorder='0'
-        allow='autoplay; encrypted-media'
-        allowFullScreen
-        width={800}
-        height={449.98}
-        title='video'/>
-      </Videodiv>
-      </div>
-  }
-}
+const Video = (props) => (
+  <div>
+    <Videodiv>
+      <iframe src={props.video_url}
+      frameBorder='0'
+      allow='autoplay; encrypted-media'
+      allowFullScreen
+      width={800}
+      height={449.98}
+      title='video'/>
+    </Videodiv>
+  </div>
+);
 
 export default Video;
