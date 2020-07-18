@@ -3,7 +3,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
   plugins: [new MiniCssExtractPlugin()],
-  mode: 'development',
+  mode: 'production',
   entry: './src/index.jsx',
   output: {
     filename: 'bundle.js',
