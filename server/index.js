@@ -16,14 +16,15 @@ mountRoutes(app)
 
 app.use(express.static(path.join(__dirname, '../dist')));
 
-
-app.get('/', (req, res) => {
-  try {
-    res.sendFile(path.join(__dirname, '../dist', 'index.html'));
-  } catch (err) {
-    res.send(err);
-  }
-});
+//Not needed to serve the index.html file
+// app.get('/', (req, res) => {
+//   console.log('Params')
+//   try {
+//     res.sendFile(path.join(__dirname, '../dist', 'index.html'));
+//   } catch (err) {
+//     res.send(err);
+//   }
+// });
 
 
 
