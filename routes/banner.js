@@ -6,7 +6,7 @@ const router = new Router();
 module.exports = router;
 
 router.get('/:id', async (req, res) => {
-  console.log('Get: ', req.params)
+  //console.log('Get: ', req.params)
   const {id} = req.params
   const client = await db.pool.connect();
   try {
