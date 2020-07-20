@@ -9,10 +9,13 @@ router.get('/:id', async (req, res) => {
   console.log('Get: ', req.params)
   const {id} = req.params
   try {
-    const {rows} = await db.query('SELECT * FROM banners WHERE campaign_id=$1', [id])
-    res.send(rows[0])
+    const client = await db.pool.connect();
+    const {rows} = await client.query('SELECT * FROM banners WHERE campaign_id=$1', [id])
+    await res.send(rows[0]);
+    client.release();
   } catch(err) {
     res.send('Get Banner Error - ',err)
+    client.release();
   }
 
 })
