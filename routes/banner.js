@@ -12,7 +12,7 @@ router.get('/:id', async (req, res) => {
     const {rows} = await db.query('SELECT * FROM banners WHERE campaign_id=$1', [id])
     res.send(rows[0])
   } catch(err) {
-    res.send(err)
+    res.send('Get Banner Error - ',err)
   }
 
 })
