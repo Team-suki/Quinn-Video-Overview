@@ -10,7 +10,6 @@ router.get('/:id', async (req, res) => {
   const client = await db.pool.connect();
   try {
     const {rows} = await client.query('SELECT * FROM banners WHERE campaign_id=$1', [id])
-    throw new Error('Test Error')
     res.send(rows[0]);
   } catch(err) {
     console.log('Error - ', err)
