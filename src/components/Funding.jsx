@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import Number from '../style/Number.style.js';
+import Number from '../style/number.style.js';
 import Pledged from '../style/pledged.style.js';
 import Sidetext from '../style/sidebarText.style.js';
 import BackerButton from '../style/backerButton.style.js';
