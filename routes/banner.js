@@ -6,20 +6,17 @@ const router = new Router();
 module.exports = router;
 
 router.get('/:id', async (req, res) => {
-  //console.log('Get: ', req.params)
   const {id} = req.params
   const client = await db.pool.connect();
   try {
     const {rows} = await client.query('SELECT * FROM banners WHERE campaign_id=$1', [id])
     res.send(rows[0]);
-    //client.release();
   } catch(err) {
     console.log('Error - ', err)
-    //res.send('Get Banner Error - ',err)
     res.status(500)
-    //client.release();
+  } finally {
+    client.release();
   }
-  client.release();
 
 })
 
