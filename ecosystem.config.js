@@ -2,7 +2,7 @@ module.exports = {
   apps : [{
     name: "KS Banner",
     script: './server/index.js',
-    watch: '.',
+    watch: 'false',
     env: {
       NODE_ENV: "production"
     }
