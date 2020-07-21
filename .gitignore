@@ -11,3 +11,5 @@ assets
 *.txt
 *.log
 .env
+clientbundle.js
+serverbundle.js

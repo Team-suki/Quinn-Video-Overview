@@ -9,7 +9,9 @@
     "start": "nodemon server/index.js",
     "seed": "node database/seeder.js",
     "build": "webpack -d --watch",
-    "build:prod": "webpack -d"
+    "build:prod": "webpack -d",
+    "build:ssr": "webpack --config ssrwebpack.config.js",
+    "build:all": "npm run build:prod && npm run build:ssr"
   },
   "repository": {
     "type": "git",
