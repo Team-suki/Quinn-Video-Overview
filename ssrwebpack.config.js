@@ -4,7 +4,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 module.exports = {
   plugins: [new MiniCssExtractPlugin()],
   mode: 'production',
-  entry: './src/index.jsx',
+  entry: './src/ssrindex.jsx',
   output: {
     filename: 'serverbundle.js',
     path: path.resolve(__dirname, 'dist'),
