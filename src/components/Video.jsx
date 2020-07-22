@@ -3,7 +3,7 @@ import axios from 'axios';
 import Background from '../style/background.style.js';
 import Funding from './Funding.jsx'
 import MidWrapper from '../style/midWrapper.style.js';
-import Videodiv from '../style/videodiv.style.js';
+import Videodiv from '../style/videoDiv.style.js';
 
 const Video = (props) => (
   <div>
