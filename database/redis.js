@@ -4,11 +4,3 @@ const connection = () => {return redis.createClient({host: process.env.REDIS_HOS
 
 module.exports.connection = connection;
 module.exports.redis = redis;
-
-
-
-// client.set("key", "value", redis.print)
-
-// client.get("key", redis.print)
-
-// client.quit()
