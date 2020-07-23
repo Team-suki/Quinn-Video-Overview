@@ -1,9 +1,10 @@
 const Router = require('express-promise-router')
-const {client, redis} = require('../database/redis.js')
+const {connection, redis} = require('../database/redis.js')
 const router = new Router();
 module.exports = router;
 
 router.get('/:id', (req, res) => {
+  const client = connection();
   const id = req.params.id
   client.hgetall(id, (err, reply) => {
     if (err) {
@@ -11,12 +12,14 @@ router.get('/:id', (req, res) => {
       res.send(`Error - ${err}`)
     } else {
       console.log('replying', reply)
-      reply ? res.send(reply) : res.send('nothing found')
+      reply ? res.send(reply) : res.send(null)
     }
+    client.quit();
   })
 })
 
 router.post('/:id', (req, res) => {
+  const client = connection();
   const id = req.params.id
   const entry = Object.entries(req.body).flat()
   client.hmset(id, entry, (err, reply) => {
@@ -25,6 +28,7 @@ router.post('/:id', (req, res) => {
     } else {
       res.send(reply)
     }
+    client.quit();
   })
 
 });

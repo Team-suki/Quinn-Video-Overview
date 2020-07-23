@@ -1,12 +1,8 @@
 const redis = require('redis');
 
-const client = redis.createClient({host: process.env.REDIS_HOST, port: process.env.REDIS_PORT});
+const connection = () => {return redis.createClient({host: process.env.REDIS_HOST, port: process.env.REDIS_PORT})};
 
-client.on('error', () =>{
-  console.error('error')
-});
-
-module.exports.client = client;
+module.exports.connection = connection;
 module.exports.redis = redis;
 
 
