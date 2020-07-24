@@ -30,7 +30,7 @@ class App extends React.Component {
   }
   getBanner() {
     var id = new URLSearchParams(window.location.search).get('id');
-    axios.get(`http://SDC-LB-679578692.us-west-1.elb.amazonaws.com/banners/${id}`).then(result => {
+    axios.get(`http://localhost:8080/banners/${id}`).then(result => {
       this.setState({
         title: result.data.title,
         description: result.data.description,

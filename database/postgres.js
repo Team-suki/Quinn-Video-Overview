@@ -4,7 +4,7 @@ const db = {
   user: process.env.DB_USER,
   password: process.env.DB_PWD,
   database: process.env.DB,
-  max: 10
+  max: 99
 }
 const pool = new Pool(db)
 
