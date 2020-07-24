@@ -1,6 +1,6 @@
 const Router = require('express-promise-router')
 const db = require('../database/postgres.js');
-const {connection, redis} = require('../database/redis.js')
+const {redisClient, redis} = require('../database/redis.js')
 
 const router = new Router();
 
@@ -8,7 +8,6 @@ module.exports = router;
 
 router.get('/:id', (req, res) => {
   const {id} = req.params
-  const redisClient = connection();
   redisClient.hgetall(id, async (err, reply) => {
     if (err) {
       res.status(500).send(`Error at redis - ${err}`)
@@ -30,7 +29,6 @@ router.get('/:id', (req, res) => {
           client.release();
         }
       }
-      redisClient.quit();
     }
   });
 });
