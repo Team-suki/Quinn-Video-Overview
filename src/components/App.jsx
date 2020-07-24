@@ -27,10 +27,9 @@ class App extends React.Component {
   }
   componentDidMount() {
     this.getBanner();
-    console.log('props', this.props)
   }
   getBanner() {
-    var id = this.props.itemid || new URLSearchParams(window.location.search).get('id');
+    var id = new URLSearchParams(window.location.search).get('id');
     axios.get(`http://SDC-LB-679578692.us-west-1.elb.amazonaws.com/banners/${id}`).then(result => {
       this.setState({
         title: result.data.title,
