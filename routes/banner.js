@@ -7,7 +7,7 @@ const router = new Router();
 module.exports = router;
 
 router.get('/:id', (req, res) => {
-  const {id} = req.params
+  const {id} = req.params;
   redisClient.hgetall(id, async (err, reply) => {
     if (err) {
       res.status(500).send(`Error at redis - ${err}`)
