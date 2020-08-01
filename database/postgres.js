@@ -4,11 +4,12 @@ const db = {
   user: process.env.DB_USER,
   password: process.env.DB_PWD,
   database: process.env.DB,
-  max: 10000
+  max: 10
 }
 const pool = new Pool(db)
 
 module.exports = {
-  query: (text, params) => pool.query(text, params)
+  query: (text, params) => pool.query(text, params),
+  pool: pool
 };
 

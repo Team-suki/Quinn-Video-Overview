@@ -1,21 +1,37 @@
 const Router = require('express-promise-router')
 const db = require('../database/postgres.js');
+const {redisClient, redis} = require('../database/redis.js')
 
 const router = new Router();
 
 module.exports = router;
 
-router.get('/:id', async (req, res) => {
-  console.log('Get: ', req.params)
+router.get('/:id', (req, res) => {
   const {id} = req.params
-  try {
-    const {rows} = await db.query('SELECT * FROM banners WHERE campaign_id=$1', [id])
-    res.send(rows[0])
-  } catch(err) {
-    res.send('Get Banner Error - ',err)
-  }
-
-})
+  redisClient.hgetall(id, async (err, reply) => {
+    if (err) {
+      res.status(500).send(`Error at redis - ${err}`)
+    } else {
+      if (reply) {
+        res.send(reply)
+      } else {
+        const client = await db.pool.connect();
+        try {
+          const {rows} = await client.query('SELECT * FROM banners WHERE campaign_id=$1', [id])
+          res.send(rows[0]);
+          var redisEntry = Object.entries(rows[0]).flat();
+          redisClient.hmset(id, redisEntry, (err) => {
+            if (err) console.log('Redis err at setting ', err)
+          })
+        } catch (err) {
+          res.status(500).send(`Postgres error - ${err}`)
+        } finally {
+          client.release();
+        }
+      }
+    }
+  });
+});
 
 router.post('/', async (req, res) => {
   const {campaign_id, title, description, category, location, product_we_love, video_url, amount_pledged, pledge_goal, backers, end_date} = req.body
