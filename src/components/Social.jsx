@@ -2,35 +2,10 @@ import React from 'react';
 import axios from 'axios';
 import Location from '../style/location.style.js';
 
-class Social extends React.Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      location: ''
-    }
-
-    this.getBanner = this.getBanner.bind(this);
-  }
-
-  getBanner() {
-    axios.get(`http://localhost:3002/banners${window.location.pathname}`).then(result => {
-      this.setState({
-        location: result.data.location,
-        category: result.data.category
-      });
-    })
-  }
-
-  componentDidMount() {
-    this.getBanner()
-  }
-
-  render() {
-    return <div>
-      <Location>{'Project We Love'}{`    `}{this.state.category} {this.state.location} {'Project Budget'}</Location>
-      </div>
-  }
-}
+const Social = (props) => (
+  <div>
+    <Location>{'Project We Love'}{`    `}{props.category} {props.location} {'Project Budget'}</Location>
+  </div>
+);
 
 export default Social;
