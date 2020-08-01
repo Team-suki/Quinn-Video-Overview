@@ -1,13 +1,13 @@
 config:
-  target: 'http://localhost:3002'
+  target: 'http://localhost:8080'
   phases:
-    - duration: 600
-      arrivalRate: 1
-    - duration: 600
-      arrivalRate: 10
-    - duration: 600
+    - duration: 60
       arrivalRate: 100
-    - duration: 600
+    - duration: 60
+      arrivalRate: 1000
+    - duration: 60
+      arrivalRate: 1000
+    - duration: 60
       arrivalRate: 1000
   processor: "./randomBannerID.js"
 scenarios:

@@ -5,6 +5,7 @@ module.exports = {
     watch: 'false',
     env: {
       NODE_ENV: "production"
-    }
+    },
+    node_args: '--max-old-space-size=1000'
   }],
 };
